@@ -42,3 +42,7 @@ NOTICE: emysql has a automatic balance system, each time you call the `emysql()`
 once the MySQL pool is no longer needed, you can shut it down.
 
     emysql.close()
+
+### The Logger
+
+emysql use the default `winston` logger, if you want use your own `winston` logger instance, use `emysql.setLogger(logger)`
