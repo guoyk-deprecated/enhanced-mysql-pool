@@ -21,6 +21,7 @@
     "url": "https://github.com/DidierGuo/enhanced-mysql-pool/issues"
   },
   "dependencies": {
-    "mysql": "~2.0.0-alpha8"
+    "mysql": "~2.0.0-alpha8",
+    "winston": "~0.7.2"
   }
 }
