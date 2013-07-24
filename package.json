@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DidierGuo/enhanced-mysql-pool.git"
+    "url": "git://github.com/ireulguo/enhanced-mysql-pool.git"
   },
   "keywords": [
     "mysql",
@@ -17,7 +17,7 @@
   "author": "IREUL Guo <i@ireul.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DidierGuo/enhanced-mysql-pool/issues"
+    "url": "https://github.com/ireulguo/enhanced-mysql-pool/issues"
   },
   "dependencies": {
     "mysql": "~2.0.0-alpha8",
