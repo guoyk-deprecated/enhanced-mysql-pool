@@ -32,7 +32,7 @@ keepconn = (conn)->
         log.info 'A New MySQL Connection Established'
         fail_count = 0
         if retryTimer?
-            log.info 'EMySQL-pool Failsafe Mode Exited'
+            log.info 'MySQL-pool Failsafe Mode Exited'
             clearInterval retryTimer
             retryTimer = null
 
@@ -61,9 +61,10 @@ doresumeWR=()->
     config=require thefile
     doresume()
 
-#Faisafe Mode
+#Failsafe Mode
 dofailsafe = ()->
-    log.error '***[Node.js API Server] MySQL Module Failed***'
+    log.error '******    MySQL Pool Module Failed   ******'
+    log.error '   ---      Failsafe Mode Entered    ---   '
     retryTimer = setInterval doresumeWR,retryInterval
 
 #The Connection to Provide
@@ -91,7 +92,7 @@ Object.defineProperty what,'conn',
 what.close=()->
     closing = true
     clearInterval retryTimer if retryTimer?
-    log.info 'CWMySQL is Shutting Down'
+    log.info 'MySQL Pool is Shutting Down'
     for conn in conns
         try
             conn.end() if conn.state is not 'disconnected'
@@ -108,10 +109,11 @@ what.init=(file)->
     max_conn = config.max_conn or 10
     max_fail = config.max_fail or 20
     retryInterval = config.retryInterval or 5000
-    log.info 'Initializing MYSQL Pool...'
+    log.info 'Initializing MySQL Pool...'
     for i in [1..max_conn]
-        log.info "Creating MYSQL Connection #{i}/#{max_conn}"
+        log.info "Creating MySQL Connection #{i}/#{max_conn}"
         tmp = mysql.createConnection config
         keepconn tmp
         tmp.connect()
         conns[i-1] = tmp
+    console.info ' MySQL Pool Initialization Finished'
