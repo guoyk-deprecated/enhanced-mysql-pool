@@ -1,0 +1,26 @@
+{
+  "name": "enhanced-mysql-pool",
+  "version": "0.0.1",
+  "description": "Enhanced MySQL Pool for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DidierGuo/enhanced-mysql-pool.git"
+  },
+  "keywords": [
+    "mysql",
+    "connection",
+    "pool"
+  ],
+  "author": "IREUL Guo <i@ireul.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DidierGuo/enhanced-mysql-pool/issues"
+  },
+  "dependencies": {
+    "mysql": "~2.0.0-alpha8"
+  }
+}
