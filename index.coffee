@@ -32,7 +32,7 @@ keepconn = (conn)->
         log.info 'MySQL Connection Established: '+conn._index
         fail_count = 0
         if retryTimer?
-            log.info '********** eMySQL pool Failsafe Mode Exited **********'
+            log.info '**********  eMySQL pool Failsafe Mode Exited   **********'
             clearInterval retryTimer
             retryTimer = null
 

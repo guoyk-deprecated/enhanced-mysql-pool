@@ -1,4 +1,4 @@
-enhanced-mysql-pool
+Enhanced MySQL Pool [![Build Status](https://travis-ci.org/ireulguo/enhanced-mysql-pool.png?branch=master)](https://travis-ci.org/ireulguo/enhanced-mysql-pool)
 ===================
 ### IREUL Guo <i@ireul.me>
 
