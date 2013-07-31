@@ -4,6 +4,7 @@
   "description": "Enhanced MySQL Pool for Node.js",
   "main": "index.js",
   "scripts": {
+      "test":"node test/test.js"
   },
   "repository": {
     "type": "git",
