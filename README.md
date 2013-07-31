@@ -22,8 +22,8 @@ then:
     emysql.init('/path/to/the/config.json')
 
 
-NOTICE: the path send to `emysql.init` is for the function `require`, once the emysql module failed too much, it will entered failsafe module, emysql will automatically reload config file. It's suggested to use a `absolute path`.
-WARN  : init once, use everywhere
+NOTICE: the path send to `emysql.init` is for the function `require`, once the emysql module failed too much, it will entered failsafe module, emysql will automatically reload config file. It's suggested to use a `absolute path`.   
+WARN: init once, use everywhere
 
 ### Fetch a Avaliable Connection
 

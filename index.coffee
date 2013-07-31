@@ -116,4 +116,4 @@ what.init=(file)->
         keepconn tmp
         tmp.connect()
         conns[i-1] = tmp
-    console.info ' MySQL Pool Initialization Finished'
+    log.info ' MySQL Pool Initialization Finished'

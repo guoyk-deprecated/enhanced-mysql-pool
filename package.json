@@ -1,6 +1,6 @@
 {
   "name": "emysql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Enhanced MySQL Pool for Node.js",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "connection",
     "pool"
   ],
-  "author": "IREUL Guo <i@ireul.me>",
+  "author": "IREUL Guo <ireul.guo@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ireulguo/enhanced-mysql-pool/issues"
