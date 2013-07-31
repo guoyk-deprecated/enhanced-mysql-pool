@@ -58,8 +58,9 @@
     return conns.forEach(function(conn, i) {
       var tmp;
       if (conn.state === 'disconnected') {
-        log.info('Resuming a MySQL Connection');
+        log.info('Resuming a MySQL Connection: ' + conn._index);
         tmp = mysql.createConnection(config);
+        tmp._index = i + 1;
         keepconn(tmp);
         tmp.connect();
         return conns[i] = tmp;
@@ -147,6 +148,7 @@
     for (i = _i = 1; 1 <= max_conn ? _i <= max_conn : _i >= max_conn; i = 1 <= max_conn ? ++_i : --_i) {
       log.info("Creating MySQL Connection " + i + "/" + max_conn);
       tmp = mysql.createConnection(config);
+      tmp._index = i;
       keepconn(tmp);
       tmp.connect();
       conns[i - 1] = tmp;

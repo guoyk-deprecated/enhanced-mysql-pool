@@ -6,7 +6,13 @@
 
   emysql.init(__dirname + '/config.json');
 
-  console.log(' ============ Pool will be killed after 5 minutes ===========');
+  console.log('\n========== Pool will be killed after 5 minutes ===========\n');
+
+  console.log('\n========== Every 3 sec one conn will be killed ==========\n');
+
+  setInterval(function() {
+    return emysql.conn.end();
+  }, 3000);
 
   belog = function(cb) {
     return function(err, rows) {
@@ -20,12 +26,11 @@
     };
   };
 
-  emysql.conn.query('SHOW DATABASES;', belog());
-
   emysql.conn.query('CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT,data TEXT NOT NULL,PRIMARY KEY (id))', belog(function() {
     var i, _i;
-    console.log('Creating 20 rows ...\n And Log them out in 5 secs');
-    for (i = _i = 1; _i <= 20; i = ++_i) {
+    emysql.conn.query('SHOW DATABASES;', belog());
+    console.log('\n========== Create 100 rows ==========\n========== And Log them out in 5 secs ==========');
+    for (i = _i = 1; _i <= 100; i = ++_i) {
       emysql.conn.query('INSERT INTO test SET data = ?;', ['test_data,lalala'], belog());
     }
     return setTimeout(function() {
@@ -35,6 +40,6 @@
 
   setTimeout(function() {
     return process.exit(0);
-  }, 180000);
+  }, 300000);
 
 }).call(this);
