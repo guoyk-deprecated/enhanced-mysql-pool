@@ -27,7 +27,7 @@
   keepconn = function(conn) {
     conn.on('error', resume);
     conn.on('end', resume);
-    return conn.on('connection', function() {
+    return conn._protocol.on('handshake', function() {
       log.info('A New MySQL Connection Established');
       fail_count = 0;
       if (retryTimer != null) {

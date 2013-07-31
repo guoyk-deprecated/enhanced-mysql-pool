@@ -26,7 +26,11 @@ emysql.conn.query 'CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT,data TEXT N
         emysql.conn.query 'INSERT INTO test SET data = ?;',['test_data,lalala'],belog()
 
     setTimeout ->
-        emysql.conn.query 'SELECT * FROM test LIMIT 20;',belog()
+        emysql.conn.query 'SELECT * FROM test LIMIT 20;',belog ->
+            console.log '========== Kill them all =========='
+            for i in [1...20]
+                try
+                    emysql.conn.end()
     ,5000
 
 setTimeout ()->

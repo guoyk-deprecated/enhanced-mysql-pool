@@ -28,7 +28,7 @@ conns = []
 keepconn = (conn)->
     conn.on 'error',resume
     conn.on 'end',resume
-    conn.on 'connection',()->
+    conn._protocol.on 'handshake',()->
         log.info 'A New MySQL Connection Established'
         fail_count = 0
         if retryTimer?

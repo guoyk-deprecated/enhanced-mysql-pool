@@ -34,7 +34,17 @@
       emysql.conn.query('INSERT INTO test SET data = ?;', ['test_data,lalala'], belog());
     }
     return setTimeout(function() {
-      return emysql.conn.query('SELECT * FROM test LIMIT 20;', belog());
+      return emysql.conn.query('SELECT * FROM test LIMIT 20;', belog(function() {
+        var _j, _results;
+        console.log('========== Kill them all ==========');
+        _results = [];
+        for (i = _j = 1; _j < 20; i = ++_j) {
+          try {
+            _results.push(emysql.conn.end());
+          } catch (_error) {}
+        }
+        return _results;
+      }));
     }, 5000);
   }));
 
