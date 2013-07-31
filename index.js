@@ -28,7 +28,7 @@
     conn.on('error', resume);
     conn.on('end', resume);
     return conn._protocol.on('handshake', function() {
-      log.info('A New MySQL Connection Established');
+      log.info('MySQL Connection Established: ' + conn._index);
       fail_count = 0;
       if (retryTimer != null) {
         log.info('MySQL-pool Failsafe Mode Exited');
@@ -58,7 +58,7 @@
     return conns.forEach(function(conn, i) {
       var tmp;
       if (conn.state === 'disconnected') {
-        log.info('Resuming a MySQL Connection: ' + conn._index);
+        log.info('Resuming MySQL Connection: ' + conn._index);
         tmp = mysql.createConnection(config);
         tmp._index = i + 1;
         keepconn(tmp);

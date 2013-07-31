@@ -29,7 +29,7 @@ keepconn = (conn)->
     conn.on 'error',resume
     conn.on 'end',resume
     conn._protocol.on 'handshake',()->
-        log.info 'A New MySQL Connection Established'
+        log.info 'MySQL Connection Established: '+conn._index
         fail_count = 0
         if retryTimer?
             log.info 'MySQL-pool Failsafe Mode Exited'
@@ -48,7 +48,7 @@ resume = (err)->
 doresume = ()->
     conns.forEach (conn,i)->
         if conn.state is 'disconnected'
-            log.info 'Resuming a MySQL Connection: '+conn._index
+            log.info 'Resuming MySQL Connection: '+conn._index
             tmp = mysql.createConnection config
             tmp._index=i+1
             keepconn tmp
