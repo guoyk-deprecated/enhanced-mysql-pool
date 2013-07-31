@@ -1,6 +1,6 @@
 Enhanced MySQL Pool [![Build Status](https://travis-ci.org/ireulguo/enhanced-mysql-pool.png?branch=master)](https://travis-ci.org/ireulguo/enhanced-mysql-pool)
 ===================
-### IREUL Guo <i@ireul.me>
+### IREUL Guo <ireul.guo@gmail.com>
 
 Enhanced MySQL Connection Pool for Node.js
 
