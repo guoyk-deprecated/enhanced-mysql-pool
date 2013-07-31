@@ -31,7 +31,7 @@
       log.info('MySQL Connection Established: ' + conn._index);
       fail_count = 0;
       if (retryTimer != null) {
-        log.info('********** eMySQL pool Failsafe Mode Exited **********');
+        log.info('**********  eMySQL pool Failsafe Mode Exited   **********');
         clearInterval(retryTimer);
         return retryTimer = null;
       }
