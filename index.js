@@ -31,7 +31,7 @@
       log.info('MySQL Connection Established: ' + conn._index);
       fail_count = 0;
       if (retryTimer != null) {
-        log.info('MySQL-pool Failsafe Mode Exited');
+        log.info('********** eMySQL pool Failsafe Mode Exited **********');
         clearInterval(retryTimer);
         return retryTimer = null;
       }
@@ -77,8 +77,8 @@
   };
 
   dofailsafe = function() {
-    log.error('******    MySQL Pool Module Failed   ******');
-    log.error('   ---      Failsafe Mode Entered    ---   ');
+    log.error('**********    MySQL Pool Module Failed    ***********');
+    log.error('   -------      Failsafe Mode Entered     ------   ');
     return retryTimer = setInterval(doresumeWR, retryInterval);
   };
 
@@ -115,7 +115,7 @@
     if (retryTimer != null) {
       clearInterval(retryTimer);
     }
-    log.info('MySQL Pool is Shutting Down');
+    log.info('eMySQL Pool is Shutting Down');
     _results = [];
     for (_i = 0, _len = conns.length; _i < _len; _i++) {
       conn = conns[_i];
@@ -144,7 +144,7 @@
     max_conn = config.max_conn || 10;
     max_fail = config.max_fail || 20;
     retryInterval = config.retryInterval || 5000;
-    log.info('Initializing MySQL Pool...');
+    log.info('Initializing eMySQL Pool...');
     for (i = _i = 1; 1 <= max_conn ? _i <= max_conn : _i >= max_conn; i = 1 <= max_conn ? ++_i : --_i) {
       log.info("Creating MySQL Connection " + i + "/" + max_conn);
       tmp = mysql.createConnection(config);
@@ -153,7 +153,7 @@
       tmp.connect();
       conns[i - 1] = tmp;
     }
-    return log.info(' MySQL Pool Initialization Finished');
+    return log.info('eMySQL Pool Initialization Finished');
   };
 
 }).call(this);

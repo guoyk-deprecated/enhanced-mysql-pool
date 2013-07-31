@@ -32,7 +32,7 @@ keepconn = (conn)->
         log.info 'MySQL Connection Established: '+conn._index
         fail_count = 0
         if retryTimer?
-            log.info 'MySQL-pool Failsafe Mode Exited'
+            log.info '********** eMySQL pool Failsafe Mode Exited **********'
             clearInterval retryTimer
             retryTimer = null
 
@@ -64,8 +64,8 @@ doresumeWR=()->
 
 #Failsafe Mode
 dofailsafe = ()->
-    log.error '******    MySQL Pool Module Failed   ******'
-    log.error '   ---      Failsafe Mode Entered    ---   '
+    log.error '**********    MySQL Pool Module Failed    ***********'
+    log.error '   -------      Failsafe Mode Entered     ------   '
     retryTimer = setInterval doresumeWR,retryInterval
 
 #The Connection to Provide
@@ -93,7 +93,7 @@ Object.defineProperty what,'conn',
 what.close=()->
     closing = true
     clearInterval retryTimer if retryTimer?
-    log.info 'MySQL Pool is Shutting Down'
+    log.info 'eMySQL Pool is Shutting Down'
     for conn in conns
         try
             conn.end() if conn.state is not 'disconnected'
@@ -110,7 +110,7 @@ what.init=(file)->
     max_conn = config.max_conn or 10
     max_fail = config.max_fail or 20
     retryInterval = config.retryInterval or 5000
-    log.info 'Initializing MySQL Pool...'
+    log.info 'Initializing eMySQL Pool...'
     for i in [1..max_conn]
         log.info "Creating MySQL Connection #{i}/#{max_conn}"
         tmp = mysql.createConnection config
@@ -118,4 +118,4 @@ what.init=(file)->
         keepconn tmp
         tmp.connect()
         conns[i-1] = tmp
-    log.info ' MySQL Pool Initialization Finished'
+    log.info 'eMySQL Pool Initialization Finished'
