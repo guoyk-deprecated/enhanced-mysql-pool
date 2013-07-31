@@ -6,12 +6,14 @@
 
   emysql.init(__dirname + '/config.json');
 
+  console.log(' ============ Pool will be killed after 5 minutes ===========');
+
   belog = function(cb) {
     return function(err, rows) {
       if (err != null) {
-        conosle.log("Error Occured: " + (JSON.stringify(err, null, '\t')));
+        conosle.log("Error Occured: " + (JSON.stringify(err)));
       }
-      console.log("Data Retrived: " + (JSON.stringify(rows, null, '\t')));
+      console.log("Data Retrived: " + (JSON.stringify(rows)));
       if (typeof cb === 'function') {
         return cb();
       }
@@ -20,17 +22,18 @@
 
   emysql.conn.query('SHOW DATABASES;', belog());
 
-  emysql.conn.query('CREATE TABLE test (id INT NOT NULL,data TEXT NOT NULL,PRIMARY KEY (id))', belog(function() {
-    setInterval(function() {
-      return emysql.conn.query('INSERT INTO test SET data = ?;', ['test_data,lalala']);
-    }, 3000);
-    return setInterval(function() {
+  emysql.conn.query('CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT,data TEXT NOT NULL,PRIMARY KEY (id))', belog(function() {
+    var i, _i;
+    console.log('Creating 20 rows ...\n And Log them out in 5 secs');
+    for (i = _i = 1; _i <= 20; i = ++_i) {
+      emysql.conn.query('INSERT INTO test SET data = ?;', ['test_data,lalala'], belog());
+    }
+    return setTimeout(function() {
       return emysql.conn.query('SELECT * FROM test LIMIT 20;', belog());
-    }, 1000);
+    }, 5000);
   }));
 
   setTimeout(function() {
-    console.log(' ============ Pool will be killed after 3 minutes ===========');
     return process.exit(0);
   }, 180000);
 
